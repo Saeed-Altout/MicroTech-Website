@@ -1,5 +1,3 @@
-import { FeatureCardProps } from "@/interface";
-
 import mobile from "@/public/services/mobile.svg";
 import web from "@/public/services/web.svg";
 import uiux from "@/public/services/ui&ux.svg";
@@ -21,45 +19,8 @@ import project14 from "@/public/projects/project (14).jpg";
 import project15 from "@/public/projects/project (15).jpg";
 import project16 from "@/public/projects/project (16).jpg";
 import project17 from "@/public/projects/project (17).jpg";
-import {
-  CheckCircle,
-  CreativeCommons,
-  Goal,
-  Hand,
-  HandHelping,
-  Scale3D,
-  Stars,
-} from "lucide-react";
-import { FaBalanceScale } from "react-icons/fa";
-import { BiCertification } from "react-icons/bi";
+import { CheckCircle, Goal, Hand, Stars } from "lucide-react";
 
-export const routes = [
-  {
-    label: "home",
-    href: "/",
-    disabled: false,
-  },
-  // {
-  //   label: "about",
-  //   href: "/about",
-  //   disabled: true,
-  // },
-  {
-    label: "projects",
-    href: "/projects",
-    disabled: false,
-  },
-  {
-    label: "services",
-    href: "/services",
-    disabled: false,
-  },
-  {
-    label: "contact us",
-    href: "/contact-us",
-    disabled: false,
-  },
-];
 export const statistics = [
   {
     count: "+20",
@@ -78,7 +39,7 @@ export const statistics = [
     label: "Projects",
   },
 ];
-export const features: FeatureCardProps[] = [
+export const features = [
   {
     title: "Our Vision",
     description:
