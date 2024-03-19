@@ -1,17 +1,8 @@
 import Link from "next/link";
-import {
-  FaEnvelope,
-  FaFacebook,
-  FaLinkedin,
-  FaLocationArrow,
-  FaPhone,
-  FaTwitter,
-  FaPhoneAlt,
-} from "react-icons/fa";
+import { FaEnvelope, FaLocationArrow, FaPhoneAlt } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
-import { Text } from "@/components/common/text";
 import { Section } from "@/components/section";
 import { Logo } from "@/components/logo";
 import { ModeToggle } from "@/components/ui/mode-toggle";
