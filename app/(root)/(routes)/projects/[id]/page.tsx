@@ -1,36 +1,5 @@
-import { Section } from "@/components/section";
-import { Text } from "@/components/common/text";
-import { Button } from "@/components/ui/button";
-import { projects } from "@/constant";
-import Autoplay from "embla-carousel-autoplay";
 import axios from "axios";
-import {
-  CheckCircle,
-  CreativeCommons,
-  Eye,
-  Facebook,
-  Heart,
-  Share,
-} from "lucide-react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-
-import Image from "next/image";
-import Link from "next/link";
-import { FaGithub } from "react-icons/fa";
-import {
-  BsBagCheckFill,
-  BsCheckCircle,
-  BsCheckCircleFill,
-  BsFillCheckCircleFill,
-  BsHeartFill,
-} from "react-icons/bs";
-import { BiChat } from "react-icons/bi";
+import { BsCheckCircleFill } from "react-icons/bs";
 import { Heading } from "./components/heading";
 import { Gallery } from "./components/gallery";
 import { Comments } from "./components/comments";
@@ -45,7 +14,7 @@ export default async function Project({ params }: { params: { id: any } }) {
   if (!project) {
     return (
       <div className="flex justify-center items-center mt-10 h-[150px]">
-        <Text className="text-muted-foreground">Not Found</Text>
+        <p className="text-muted-foreground">Not Found</p>
       </div>
     );
   }
