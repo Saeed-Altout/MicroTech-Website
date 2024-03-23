@@ -13,6 +13,7 @@ interface HeadingProps {
   technologies: any[];
   tools: any[];
   description: string;
+  cover: string;
 }
 
 export const Heading = ({
@@ -21,10 +22,17 @@ export const Heading = ({
   technologies,
   tools,
   description,
+  cover,
 }: HeadingProps) => {
   return (
-    <div className="relative pb-10 pt-40 border-b dark:border-none dark:bg-[url('/cover4.jpg')] bg-center bg-cover bg-no-repeat">
-      <div className="absolute w-full h-full top-0 left-0 bg-background/50 -z-0 hidden dark:block"></div>
+    <div className="relative pb-10 pt-40 border-b">
+      <Image
+        src={cover}
+        alt="cover"
+        fill
+        className="object-cover hidden dark:block"
+      />
+      <div className="absolute w-full h-full top-0 left-0 bg-background/80 -z-0 hidden dark:block" />
       <div className="container mx-auto relative">
         <div className="space-y-1">
           <div className="relative w-fit">

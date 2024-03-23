@@ -12,7 +12,10 @@ export const logout = async () => {
     },
   };
   try {
-    await axios.get(`${process.env.NEXT_PUBLIC_LOGOUT}`, config);
+    await axios.get(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${process.env.NEXT_PUBLIC_LOGOUT}`,
+      config
+    );
     cookiesList.delete("next__username");
     cookiesList.delete("next__email");
     cookiesList.delete("next__token");

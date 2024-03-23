@@ -73,7 +73,7 @@ body,
 
 @layer base {
   * {
-    @apply border-border font-poppins;
+    @apply border-border font-poppins scroll-smooth;
   }
   body {
     @apply bg-background text-foreground;

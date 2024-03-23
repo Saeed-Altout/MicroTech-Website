@@ -10,11 +10,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export const metadata: Metadata = {
-  title: "MicroTech - Contact us",
-  description: "At MicroTech, we're dedicated to transforming your ideas.",
-};
-
 export default function ContactUsPage() {
   return (
     <Section className="py-20 space-y-20" container={true}>

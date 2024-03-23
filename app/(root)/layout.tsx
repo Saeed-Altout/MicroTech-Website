@@ -10,14 +10,14 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <header>
+      <header className="w-full">
         <Navbar />
       </header>
-      <main>
+      <main className="flex-1 w-full">
         <ScrollTop />
         {children}
       </main>
-      <footer>
+      <footer className="w-full">
         <Footer />
       </footer>
     </>

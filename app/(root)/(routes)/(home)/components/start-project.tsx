@@ -25,7 +25,7 @@ export const StartProjectSection = () => {
           them on their journey and discover how they can help bring your
           digital ideas to life.
         </p>
-        <div className="bg-background px-8 py-3 rounded-md flex items-center justify-center flex-wrap gap-5 w-fit mx-auto">
+        <div className="bg-background px-8 py-3 rounded-md flex items-center justify-center flex-wrap gap-5 w-fit mx-auto mt-8">
           <OrderModal />
           <p className="text-sm">Let&apos;s start your project now!</p>
           <Button onClick={() => orderModal.onOpen()}>

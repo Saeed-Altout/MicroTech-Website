@@ -1,25 +1,23 @@
+import { refresh } from "@/actions/refresh";
 import { AxiosError } from "axios";
 import { redirect } from "next/navigation";
 
-export const onError = async (error: any) => {
+export const onError = (error: any) => {
   if (error instanceof AxiosError) {
     switch (error.response?.status) {
       case 400:
         return error.response?.data.message;
       case 401:
-        // redirect("/auth/login");
-        return error.response?.data.message;
+        redirect("/auth/login");
       case 403:
-        // redirect("/auth/login");
-        return error.response?.data.message;
+        refresh();
+        return "Retry again";
       case 404:
-        // redirect("/error/not-found");
         return error.response?.data.message;
       case 500:
-        // redirect("/error/not-found");
         return error.response?.data.message;
       default:
-        return "Request failed";
+        return "Something went wrong!";
     }
   } else {
     return "Something went wrong!";

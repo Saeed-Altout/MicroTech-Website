@@ -25,10 +25,18 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 import { inquiry, media } from "@/constant";
-import { formSchema } from "@/schema";
 import { Spinner } from "./ui/spinner";
 import { useState } from "react";
-
+import axios from "axios";
+import { toast } from "sonner";
+import { onError } from "@/lib/error";
+export const formSchema = z.object({
+  fullName: z.string(),
+  email: z.string(),
+  inquiryType: z.string(),
+  media: z.string(),
+  message: z.string(),
+});
 export const FormContact = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -36,15 +44,30 @@ export const FormContact = () => {
     defaultValues: {
       fullName: "",
       email: "",
-      phone: "",
       inquiryType: "",
       media: "",
       message: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      setIsLoading(true);
+      await axios.post("http://127.0.0.1:8000/user/send_message", {
+        full_name: values.fullName,
+        email: values.email,
+        reaching_way: values.media,
+        inquiry_type: values.inquiryType,
+        message: values.message,
+      });
+
+      toast.success("Success");
+    } catch (error) {
+      const message = onError(error);
+      toast.error(message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -58,7 +81,11 @@ export const FormContact = () => {
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="full name" {...field} />
+                  <Input
+                    disabled={isLoading}
+                    placeholder="full name"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -71,20 +98,7 @@ export const FormContact = () => {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="email" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Phone</FormLabel>
-                <FormControl>
-                  <Input placeholder="phone" {...field} />
+                  <Input disabled={isLoading} placeholder="email" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -97,6 +111,7 @@ export const FormContact = () => {
               <FormItem>
                 <FormLabel>How Did You Hear About Us?</FormLabel>
                 <Select
+                  disabled={isLoading}
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
@@ -106,8 +121,8 @@ export const FormContact = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {media?.map((value, index: React.Key) => (
-                      <SelectItem key={index} value={value}>
+                    {media?.map((value) => (
+                      <SelectItem key={value} value={value}>
                         {value}
                       </SelectItem>
                     ))}
@@ -126,6 +141,7 @@ export const FormContact = () => {
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
+                  disabled={isLoading}
                 >
                   <FormControl>
                     <SelectTrigger>
@@ -133,8 +149,8 @@ export const FormContact = () => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    {inquiry?.map((value, index: React.Key) => (
-                      <SelectItem key={index} value={value}>
+                    {inquiry?.map((value) => (
+                      <SelectItem key={value} value={value}>
                         {value}
                       </SelectItem>
                     ))}
@@ -153,6 +169,7 @@ export const FormContact = () => {
                 <FormControl>
                   <Textarea
                     rows={6}
+                    disabled={isLoading}
                     placeholder="Enter your Message here.."
                     {...field}
                   />
@@ -163,7 +180,11 @@ export const FormContact = () => {
           />
         </div>
         <div className="w-full flex justify-center md:justify-end">
-          <Button type="submit" className="w-full md:w-fit">
+          <Button
+            disabled={isLoading}
+            type="submit"
+            className="w-full md:w-fit"
+          >
             Send {isLoading && <Spinner className="text-background ml-2" />}
           </Button>
         </div>

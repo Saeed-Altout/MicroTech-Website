@@ -3,6 +3,9 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { cn } from "@/lib/utils";
+import SessionProvider from "@/providers/session-provider";
+import ApiProvider from "@/providers/api-provider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -36,14 +39,21 @@ export default function MainLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={poppins.className}>
+      <body
+        className={cn(
+          poppins.className,
+          "flex flex-col justify-between items-center"
+        )}
+      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SessionProvider>
+            <ApiProvider>{children}</ApiProvider>
+          </SessionProvider>
           <Toaster />
         </ThemeProvider>
       </body>

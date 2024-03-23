@@ -30,11 +30,6 @@ export const NavItems = () => {
       active: pathname === "/projects",
     },
     {
-      label: "services",
-      href: "/services",
-      active: pathname === "/services",
-    },
-    {
       label: "contact us",
       href: "/contact-us",
       active: pathname === "/contact-us",

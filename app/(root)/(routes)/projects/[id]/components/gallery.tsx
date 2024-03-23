@@ -55,7 +55,10 @@ export const Gallery = ({
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {images?.map((image, index) => (
-            <div key={index} className="overflow-hidden rounded-md">
+            <div
+              key={index}
+              className="overflow-hidden rounded-md hover:scale-105 duration-300 ease-in-out"
+            >
               <Image
                 src={image?.image_url}
                 alt="image"

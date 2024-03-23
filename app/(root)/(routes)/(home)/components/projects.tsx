@@ -22,7 +22,7 @@ export const ProjectsSection = async () => {
       <div className="w-fit mx-auto py-20">
         <Button asChild>
           <Link href="/projects">
-            See more projects <ArrowUpRight className="h-4 w-4 ml-2" />
+            See more <ArrowUpRight className="h-4 w-4 ml-2" />
           </Link>
         </Button>
       </div>

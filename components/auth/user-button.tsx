@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useTransition } from "react";
+import { useTransition } from "react";
 import { FaUser } from "react-icons/fa";
 import { LogOut, Mail, User } from "lucide-react";
 
@@ -15,16 +15,13 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 import { logout } from "@/actions/logout";
 import { toast } from "sonner";
-import { auth } from "@/actions/auth";
 import { Button } from "../ui/button";
 import { LoginButton } from "./login-button";
+import { useSession } from "@/providers/session-provider";
 
 export const UserButton = () => {
+  const { isLoggedIn, username, email } = useSession();
   const [isLoading, startTransition] = useTransition();
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [username, setUsername] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
 
   const onClick = async () => {
     startTransition(() => {
@@ -39,28 +36,10 @@ export const UserButton = () => {
       });
     });
   };
-  const getUser = async () => {
-    startTransition(() => {
-      auth().then((data) => {
-        setUsername(data?.username?.value || "");
-        setEmail(data?.email?.value || "");
-        setIsLoggedIn(data?.isLoggedIn || false);
-      });
-    });
-  };
-
-  useEffect(() => {
-    getUser();
-    setIsMounted(true);
-  }, [username, email]);
-
-  if (!isMounted) {
-    return null;
-  }
 
   if (!isLoggedIn) {
     return (
-      <LoginButton asChild mode="modal">
+      <LoginButton asChild mode="redirect">
         <Button size="sm">Login</Button>
       </LoginButton>
     );

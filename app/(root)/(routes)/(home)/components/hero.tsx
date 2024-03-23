@@ -3,7 +3,13 @@ import { Section } from "@/components/section";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { BsFacebook, BsGithub, BsTelegram, BsWhatsapp } from "react-icons/bs";
+import {
+  BsFacebook,
+  BsGithub,
+  BsLinkedin,
+  BsTelegram,
+  BsWhatsapp,
+} from "react-icons/bs";
 
 export const HeroSection = () => {
   return (
@@ -27,21 +33,27 @@ export const HeroSection = () => {
               </Link>
             </Button>
             <Button asChild variant="ghost" size="icon">
-              <Link href="/contact-us">
+              <Link href="https://t.me/microtechdev" target="_blank">
                 <span className="sr-only">Telegram</span>
                 <BsTelegram className="h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="ghost" size="icon">
-              <Link href="/contact-us">
+              <Link
+                href="https://www.facebook.com/microtechdev/"
+                target="_blank"
+              >
                 <span className="sr-only">Facebook</span>
                 <BsFacebook className="h-4 w-4" />
               </Link>
             </Button>
             <Button asChild variant="ghost" size="icon">
-              <Link href="/contact-us">
-                <span className="sr-only">Github</span>
-                <BsGithub className="h-4 w-4" />
+              <Link
+                href="https://www.linkedin.com/company/microtechdev"
+                target="_blank"
+              >
+                <span className="sr-only">Linkedin</span>
+                <BsLinkedin className="h-4 w-4" />
               </Link>
             </Button>
           </div>

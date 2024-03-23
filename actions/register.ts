@@ -15,11 +15,14 @@ export const register = async (values: z.infer<typeof registerForm>) => {
   const { username, email, password } = validatedFields.data;
 
   try {
-    const res = await axios.post(`${process.env.NEXT_PUBLIC_REGISTER}`, {
-      user_name: username,
-      email: email,
-      password: password,
-    });
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/${process.env.NEXT_PUBLIC_REGISTER}`,
+      {
+        user_name: username,
+        email: email,
+        password: password,
+      }
+    );
 
     cookiesList.set("next__username", res.data.data.user_name);
     cookiesList.set("next__email", res.data.data.email);
